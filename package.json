@@ -13,6 +13,7 @@
   "dependencies": {
     "bing-chat": "^0.2.3",
     "express": "^4.18.2",
+    "fetch": "^1.1.0",
     "node-fetch": "^3.3.2"
   }
 }
