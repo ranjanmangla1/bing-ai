@@ -8,6 +8,9 @@ const PORT = process.env.PORT ||  8080;
 // to conver the body to json
 app.use(express.json());
 
+// using cors
+app.use(cors());
+
 // to get it to a tshirt uri, this will automatically set 
 // set up our server with that endpoint
 // then it is our job to handle a request to it
