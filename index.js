@@ -18,11 +18,11 @@ app.use(cors());
 // we do it by passing a callback function as the 2nd arg
 // the function itself provide access to 2 diff objexts
 // request object and response object 
-// app.get('/ask', (req, res) => {
-//     res.status(200).send({
-//         body: 'body'
-//     })
-// });
+app.get('/ask', (req, res) => {
+    res.status(200).send({
+        body: 'body'
+    })
+});
 
 app.listen( 
     PORT,
