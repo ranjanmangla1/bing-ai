@@ -24,11 +24,6 @@ app.get('/ask', (req, res) => {
     })
 });
 
-app.listen( 
-    PORT,
-    () => console.log(`App's live on https://localhost:${PORT}`)
-)
-
 app.post("/ask", async (req, res) => {
     const { cookie } = req.headers;
     const { body } = req.body;
@@ -49,3 +44,8 @@ app.post("/ask", async (req, res) => {
         result: resApi.text
     })
 })
+
+app.listen( 
+    PORT,
+    () => console.log(`App's live on https://localhost:${PORT}`)
+)
