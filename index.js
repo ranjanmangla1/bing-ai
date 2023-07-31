@@ -1,11 +1,9 @@
 import { BingChat } from 'bing-chat';
 import express from 'express';
 
-// const express = require('express');
-
 const app = express();
 
-const PORT = 8080;
+const PORT = process.env.PORT ||  8080;
 
 // to conver the body to json
 app.use(express.json());
@@ -47,5 +45,3 @@ app.post("/ask", async (req, res) => {
         result: resApi.text
     })
 })
-
-
