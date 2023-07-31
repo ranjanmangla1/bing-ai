@@ -25,24 +25,28 @@ app.get('/ask', (req, res) => {
 });
 
 app.post("/ask", async (req, res) => {
-    const { cookie } = req.headers;
+    const { apikey } = req.headers;
     const { body } = req.body;
 
     const api = new BingChat({
-        cookie: cookie
+        cookie: apikey
     })
      
     const resApi = await api.sendMessage(body, {
         variant: "creative"
     })
 
-    if(!cookie) {
-        res.status(418).send({ message: 'We need a logo! '})
+    if(!apikey) {
+        res.status(418).send({ message: 'We need a cookie! '})
     }
+
+    console.log(resApi);
 
     res.send({
         result: resApi.text
     })
+
+    console.log(res)
 })
 
 app.listen( 
