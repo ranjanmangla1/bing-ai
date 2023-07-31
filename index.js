@@ -1,5 +1,6 @@
 import { BingChat } from 'bing-chat';
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 
