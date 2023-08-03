@@ -10,7 +10,7 @@ const PORT = process.env.PORT ||  8080;
 app.use(express.json());
 
 const corsOptions = {
-  allowedHeaders: ['Content-Type', 'Authorization', 'apiKey'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'apikey'],
 };
 
 app.use(cors(corsOptions));
@@ -32,7 +32,7 @@ app.post("/ask", async (req, res) => {
     const { body } = req.body;
 
     const api = new BingChat({
-        cookie: apikey
+        apikey: apikey
     })
      
     const resApi = await api.sendMessage(body, {
