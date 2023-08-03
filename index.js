@@ -9,10 +9,13 @@ const PORT = process.env.PORT ||  8080;
 // to conver the body to json
 app.use(express.json());
 
-// using cors
-app.use(cors());
+const corsOptions = {
+  allowedHeaders: ['Content-Type', 'Authorization', 'apiKey'],
+};
 
-// to get it to a tshirt uri, this will automatically set 
+app.use(cors(corsOptions));
+
+// to get it to ask uri, this will automatically set 
 // set up our server with that endpoint
 // then it is our job to handle a request to it
 // we do it by passing a callback function as the 2nd arg
