@@ -10,10 +10,18 @@ const PORT = process.env.PORT ||  8080;
 app.use(express.json());
 
 const corsOptions = {
-  allowedHeaders: ['Content-Type', 'Authorization', 'apikey'],
-};
+    origin: '*', // Change this to the specific URL of your client-side app if known
+    allowedHeaders: ['Content-Type', 'Authorization', 'cookie'], // Add 'cookie' to the allowedHeaders
+  };
+  
+  app.use(cors(corsOptions));
+  
 
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   allowedHeaders: ['Content-Type', 'Authorization', 'apikey'],
+// };
+
+// app.use(cors(corsOptions));
 
 // to get it to ask uri, this will automatically set 
 // set up our server with that endpoint
@@ -53,16 +61,16 @@ app.get('/ask', (req, res) => {
 // })
 
 app.post("/ask/query", async (req, res) => {
-    const { apikey } = req.headers;
+    const { cookie } = req.headers;
     const { body } = req.body;
   
-    if (!apikey) {
-      res.status(418).send({ message: 'We need a cookie! '});
+    if (!cookie) {
+      res.status(418).send({ message: 'We need a cookie!' });
       return;
     }
   
     try {
-      const api = new BingChat({ cookie: apikey });
+      const api = new BingChat({ cookie: cookie });
       const resApi = await api.sendMessage(body, { variant: "creative" });
   
       res.send({ result: resApi.text });
@@ -70,7 +78,7 @@ app.post("/ask/query", async (req, res) => {
       console.error("Error occurred while processing the request:", error);
       res.status(500).send({ message: 'Error occurred while processing the request.' });
     }
-  });
+  });  
 
 app.listen( 
     PORT,
