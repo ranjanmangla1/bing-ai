@@ -23,11 +23,11 @@ app.use(cors(corsOptions));
 // request object and response object 
 app.get('/ask', (req, res) => {
     res.status(200).send({
-        body: 'body'
+        body: 'you made a successful get request!'
     })
 });
 
-app.post("/ask", (req, res) => {
+app.post("/ask/query", (req, res) => {
     const { apikey } = req.headers;
     const { body } = req.body;
 
@@ -43,13 +43,13 @@ app.post("/ask", (req, res) => {
         res.status(418).send({ message: 'We need a cookie! '})
     }
 
-    console.log(resApi);
+    // console.log(resApi);
 
     res.send({
         result: resApi.text
     })
 
-    console.log(res)
+    // console.log(res)
 })
 
 app.listen( 
