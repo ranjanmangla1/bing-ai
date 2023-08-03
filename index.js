@@ -27,7 +27,7 @@ app.get('/ask', (req, res) => {
     })
 });
 
-app.post("/ask", async (req, res) => {
+app.post("/ask", (req, res) => {
     const { apikey } = req.headers;
     const { body } = req.body;
 
@@ -35,7 +35,7 @@ app.post("/ask", async (req, res) => {
         apikey: apikey
     })
      
-    const resApi = await api.sendMessage(body, {
+    const resApi = api.sendMessage(body, {
         variant: "creative"
     })
 
