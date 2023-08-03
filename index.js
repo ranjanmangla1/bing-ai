@@ -27,30 +27,50 @@ app.get('/ask', (req, res) => {
     })
 });
 
+// app.post("/ask/query", async (req, res) => {
+//     const { apikey } = req.headers;
+//     const { body } = req.body;
+
+//     if(!apikey) {
+//         res.status(418).send({ message: 'We need a cookie! '})
+//     }
+
+//     const api = new BingChat({
+//         cookie: apikey
+//     })
+     
+//     const resApi = await  api.sendMessage(body, {
+//         variant: "creative"
+//     })
+
+//     // console.log(resApi);
+
+//     res.send({
+//         result: resApi.text
+//     })
+
+//     // console.log(res)
+// })
+
 app.post("/ask/query", async (req, res) => {
     const { apikey } = req.headers;
     const { body } = req.body;
-
-    if(!apikey) {
-        res.status(418).send({ message: 'We need a cookie! '})
+  
+    if (!apikey) {
+      res.status(418).send({ message: 'We need a cookie! '});
+      return;
     }
-
-    const api = new BingChat({
-        cookie: apikey
-    })
-     
-    const resApi = await  api.sendMessage(body, {
-        variant: "creative"
-    })
-
-    // console.log(resApi);
-
-    res.send({
-        result: resApi.text
-    })
-
-    // console.log(res)
-})
+  
+    try {
+      const api = new BingChat({ cookie: apikey });
+      const resApi = await api.sendMessage(body, { variant: "creative" });
+  
+      res.send({ result: resApi.text });
+    } catch (error) {
+      console.error("Error occurred while processing the request:", error);
+      res.status(500).send({ message: 'Error occurred while processing the request.' });
+    }
+  });
 
 app.listen( 
     PORT,
