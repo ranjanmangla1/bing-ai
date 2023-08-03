@@ -76,7 +76,7 @@ app.post("/ask/query", async (req, res) => {
       res.send({ result: resApi.text });
     } catch (error) {
       console.error("Error occurred while processing the request:", error);
-      res.status(500).send({ message: 'Error occurred while processing the request.' });
+      res.status(500).send({ message: `Error occurred while processing the request. ${error}` });
     }
   });  
 
