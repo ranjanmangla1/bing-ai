@@ -32,7 +32,7 @@ app.post("/ask/query", (req, res) => {
     const { body } = req.body;
 
     const api = new BingChat({
-        apikey: apikey
+        cookie: apikey
     })
      
     const resApi = api.sendMessage(body, {
